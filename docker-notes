@@ -1,0 +1,73 @@
+
+ // IMAGES
+
+docker build . ( command exicuted in the same diractory of project)
+docker build -t <img_name>:<tag name> . ( tag -t in the formate of name:tag )
+docker build --build_arg <args> . ( we can give args during build that we can use while running container)
+--help ( to see all available options)
+docker images ( list of images)
+docker rmi <image> (remove the image)
+docker image prune <image> ( remove the image)
+docker rmi <image> ( remove the image)
+docker image prune  ( remove all unused images) 
+docker image prune -a ( remove all unused images)
+docker image inspact <image>  ( information about image)
+docker tag <image>:<tag> <new_image_name>:<new tag_optional>  ( It create the clone image of the image and new tag is assigned)
+
+
+
+  // CONTAINER
+
+docker ps  (list of running container)
+docker ps -a ( ps=processes  list down all conainers in use or not)
+docker stop <container> 
+docker info
+docker run <image> ( creates conatiner)( creating container means not makeing copy of image but providing resources to the code like cpu, memory etc and data is used from image only)
+docker run -it <image> ( interactive terminal)
+docker run -p port(local):port(container) <image>
+docker run -p 8000:30 -d <image>  ( -d is detacher mode output is not shown in terminal)
+docker run -it <image>  ( i for interactive and t for terminal)
+docker rm <container> ( remove the stop container)
+docker cp path(local) <container>:path(container)   ( copies local file to the container we can also do vise versa)
+docker cp <container>:path(container) path(local)
+docker run -p 8000:30 --name <name> <image> ( --name is used to give name to container)
+docker run -p 8000:30 -d --rm <image> ( --rm is used to say remove container when it is stoped)
+docker run -p 8000:30 --name <img_name>(container name we are assigning) <repo name>:<tag> ( -- run container using image tag)
+docker run -p 8000:30 -v <vol_name>:<vol_path> <image> ( -v named volume)
+docker run -p 8000:30 --env PORT=30 <image> ( --env or -e environment variable)
+docker run -p 8000:30 --env_file <file_loaction> <image> ( --env_file file contains environment variables)
+docker start <container> ( restart the container) ( different from docker run as terminal is open to write more cammands)
+docker attach <container> (able to attach to container to see what is happening on program console)
+docker logs <container> ( we are able to see the past logs by the container)
+
+
+
+  //DOCKERHUB
+
+docker login
+docker push <image>
+docker pull <image>
+
+
+
+//VOLUMES
+
+ docker volume ls
+ docker run -p 8000:30 -v <vol_name>:<path_in_container> <image> ( -v named volume)
+ docker run -p 8000:30 -v <path_in_container> <image> ( -v anomalous volume)
+ docker volume rm <volume>
+*Need to learn more about volumes and bind mount
+
+ //GENERAL
+localhost = host.docker.internal( transformed into ip address of local host matchine)
+
+
+ //Network
+  docker newtork create <creat_name say A> ( create new natwork)
+  docker run --natwork A <image> ( We can use only existing natwork A to assign to a container and one natwork can assigned to many containers)
+  
+  
+  
+  ////Doubts ??
+  
+  if i run a container expose a port why it is a run on localhost only and how to change it?
